@@ -33,6 +33,7 @@
     "@graphql-codegen/typescript": "^4.0.0",
     "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@graphql-codegen/typescript-resolvers": "^4.0.0",
-    "apollo-datasource-rest": "^3.7.0"
+    "apollo-datasource-rest": "^3.7.0",
+    "encoding": "^0.1.13"
   }
 }
