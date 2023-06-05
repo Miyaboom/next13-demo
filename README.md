@@ -4,10 +4,33 @@ Next.js 13の新機能や、Next.js 11と比較して大きく変わった点を
 
 ## Appルーター(Stable)
 AppルーターはNext.js 13の新機能です。
-- **ディレクトリの変更**
+- **ルーティング**
 参考 : https://nextjs.org/docs/app/building-your-application/routing
-`/pages`ディレクトリではなく`/app`ディレクトリでページの作成およびルーティングを行うようになった。
-例 : `/app/<ディレクトリ名＝パス名>/index.tsx`→`/pages/<ディレクトリ名＝パス名>/page.tsx`
+参考 : https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes
+`/pages`ディレクトリではなく`/app`ディレクトリでページの作成およびルーティングを行う。
+	- `/post`の場合 `/pages/post/index.tsx`→`/app/post/page.tsx`
+	-  `/post/[slug]`の場合  `/pages/post/[slug].tsx`→`/app/post/[slug]/page.tsx`
+
+- **レイアウト**
+参考 : https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts
+レイアウトは、複数のページで使用する共通UIを提供する。レイアウトを作成した階層内のページに適用される。
+
+	- 以下のように`(ディレクトリ名)`とした場合、ルーティングに影響しない
+		````
+		app
+		├── (auth)
+		│ 	├── layout.tsx
+		│ 	├── signup
+		│ 	│   ├── layout.tsx
+		│ 	│   └── page.tsx　#URLは'/signup'となり(auth)直下とsignup直下のレイアウトが適用される
+		│   ...
+		└── (default)
+		    ├── layout.tsx
+		    ├── page.tsx　#URLは'/'となり(default)直下のレイアウトが適用される
+		    ...
+		````
+
+
 
 - **Reactサーバーコンポーネント**
 参考 : https://nextjs.org/docs/getting-started/react-essentials
@@ -58,5 +81,3 @@ export default function usePageView() {
 	}, [pathName]);
 }
 ````
-
-
