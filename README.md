@@ -15,7 +15,7 @@ AppルーターはNext.js 13の新機能です。
 参考 : https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts#layouts
 レイアウトは、複数のページで使用する共通UIを提供する。レイアウトを作成した階層内のページに適用される。
 
-	- 以下のように`(ディレクトリ名)`とした場合、ルーティングに影響しない
+	- 以下のように`(ディレクトリ名)`とした場合、ルーティングに影響しない。また、この場合は`(default)`直下に`page.tsx`があるため、`(auth)`直下に`page.tsx`を置くとエラーになる。
 		````
 		app
 		├── (auth)
@@ -70,14 +70,16 @@ GA4のダッシュボードで以下のように設定することで、URLが�
 ※Next 13以前は`next/router`の`router.events`でトリガーしていた。
 ````jsx
 export default function usePageView() {
-	const pathName = usePathname();
-	useEffect(() => {
-		if (pathName) {
-			window.dataLayer.push({
-				event: 'event_name',
-				custom_param: 'custom_value'
-			});
-		}
-	}, [pathName]);
+ const pathName = usePathname();
+  useEffect(() => {
+   if (pathName) {
+    window.dataLayer.push({
+     event: 'event_name',
+     custom_param: 'custom_value'
+    });
+   }
+ }, [pathName]);
 }
 ````
+
+
