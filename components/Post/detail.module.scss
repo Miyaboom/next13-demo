@@ -1,0 +1,8 @@
+.postDetail {
+    padding: 10px;
+
+    &_title {
+        @include font(xl);
+        font-weight: bold;
+    }
+}

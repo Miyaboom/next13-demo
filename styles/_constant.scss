@@ -1,0 +1,172 @@
+// ***************
+// color
+// ***************
+// Regurar Color
+$COLOR-WHITE: #fff;
+$COLOR-BLACK: #202020;
+$COLOR-GRAY-100: #f1f5f9;
+$COLOR-GRAY-200: #e2e8f0;
+$COLOR-GRAY-300: #cbd5e1;
+$COLOR-GRAY-400: #94a3b8;
+$COLOR-GRAY-500: #64748b;
+
+// ***************
+// rounded
+// ***************
+
+// @param [string] $size=none, sm, md, lg, 2xl, 3xl, full
+// @param [string; optional] $direction=top, right, bottom, left, tl, tr, bl, br
+@mixin rounded($size: none, $direction: none) {
+  $radius: 0.25rem;
+  @if $size == none {
+    $radius: 0.25rem;
+  } @else if $size == sm {
+    $radius: 0.125rem;
+  } @else if $size == md {
+    $radius: 0.25rem;
+  } @else if $size == lg {
+    $radius: 0.5rem;
+  } @else if $size == 2xl {
+    $radius: 1rem;
+  } @else if $size == 3xl {
+    $radius: 1.5rem;
+  } @else if $size == full {
+    $radius: 9999px;
+  }
+
+  @if $direction == none {
+    border-radius: $radius;
+  } @else if $direction == top {
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+  } @else if $direction == right {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  } @else if $direction == bottom {
+    border-bottom-left-radius: $radius;
+    border-bottom-right-radius: $radius;
+  } @else if $direction == left {
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+  } @else if $direction == tl {
+    border-top-left-radius: $radius;
+  } @else if $direction == tr {
+    border-top-right-radius: $radius;
+  } @else if $direction == bl {
+    border-bottom-left-radius: $radius;
+  } @else if $direction == br {
+    border-bottom-right-radius: $radius;
+  }
+}
+
+// ***************
+// font
+// ***************
+$FONT_SIZE_BASE: 1rem;
+
+$FONT_GOTHIC: 'Yu Gothic', 'YuGothic', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
+$FONT_BASE: $FONT_GOTHIC;
+
+// @param [int] $size  xs, sm, md, lg, xl, 2xl~9xlの定数で指定する
+// @param [string] $family=$FONT_GOTHIC fontの定数で指定する
+@mixin font($size: md, $family: $FONT_BASE) {
+  @if $size == xs {
+    font-size: $FONT_SIZE_BASE * 0.75; /* 12px */
+    line-height: 1rem; /* 16px */
+  } @else if $size == sm {
+    font-size: $FONT_SIZE_BASE * 0.875; /* 14px */
+    line-height: 1.25rem; /* 20px */
+  } @else if $size == md {
+    font-size: $FONT_SIZE_BASE; /* 16px */
+    line-height: 1.5rem; /* 24px */
+  } @else if $size == lg {
+    font-size: $FONT_SIZE_BASE * 1.125; /* 18px */
+    line-height: 1.75rem; /* 28px */
+  } @else if $size == xl {
+    font-size: $FONT_SIZE_BASE * 1.25; /* 20px */
+    line-height: 1.75rem; /* 28px */
+  } @else if $size == 2xl {
+    font-size: $FONT_SIZE_BASE * 1.5; /* 24px */
+    line-height: 2rem; /* 32px */
+  } @else if $size == 3xl {
+    font-size: $FONT_SIZE_BASE * 1.875; /* 30px */
+    line-height: 2.25rem; /* 36px */
+  } @else if $size == 4xl {
+    font-size: $FONT_SIZE_BASE * 2.25; /* 36px */
+    line-height: 2.5rem; /* 40px */
+  } @else if $size == 5xl {
+    font-size: $FONT_SIZE_BASE * 3; /* 48px */
+    line-height: 1;
+  } @else if $size == 6xl {
+    font-size: $FONT_SIZE_BASE * 4; /* 64px */
+    line-height: 1;
+  } @else if $size == 7xl {
+    font-size: $FONT_SIZE_BASE * 5; /* 80px */
+    line-height: 1;
+  } @else if $size == 8xl {
+    font-size: $FONT_SIZE_BASE * 6; /* 96px */
+    line-height: 1;
+  } @else if $size == 9xl {
+    font-size: $FONT_SIZE_BASE * 8; /* 144px */
+    line-height: 1;
+  }
+  font-family: $family;
+}
+
+// ***************
+// mixin
+// ***************
+
+// hover アニメーション
+// @param  {[String]} $prop [all]
+@mixin hover($prop: all) {
+  transition: $prop 0.15s linear 0.05s;
+}
+
+@mixin image_hover-init() {
+  &:after {
+    background: $COLOR_BLACK;
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    @include hover();
+  }
+}
+
+// hoverしたとき
+@mixin image_hover-active {
+  &:after {
+    opacity: 0.5;
+  }
+}
+
+// ***************
+// media
+// ***************
+$WIDTH_CONTENT_SP: 767px;
+
+// max-width
+$breakpoint-max: (
+  'sp': 'screen and (max-width: #{$WIDTH_CONTENT_SP})'
+) !default;
+
+// min-width
+$breakpoint-min: (
+  'sp': 'screen and (min-width: #{$WIDTH_CONTENT_SP + 1px})'
+) !default;
+
+@mixin mq-max($breakpoint: sp) {
+  @media #{map-get($breakpoint-max, $breakpoint)} {
+    @content;
+  }
+}
+@mixin mq-min($breakpoint: sp) {
+  @media #{map-get($breakpoint-min, $breakpoint)} {
+    @content;
+  }
+}

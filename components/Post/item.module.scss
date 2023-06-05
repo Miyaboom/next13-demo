@@ -1,0 +1,20 @@
+.postItem {
+  padding: 10px;
+  @include hover(background-color);
+
+  &_title {
+    @include font(xl);
+    font-weight: bold;
+  }
+
+  &_body {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  &:hover {
+    background-color: $COLOR-GRAY-100;
+  }
+}
