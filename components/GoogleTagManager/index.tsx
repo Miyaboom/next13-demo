@@ -1,10 +1,14 @@
-import Script from "next/script";
+'use client';
+import Script from 'next/script';
+import usePageView from './usePageView';
 
 interface GoogleTagManagerProps {
   id: string;
 }
 
 export default function GoogleTagManager({ id }: GoogleTagManagerProps) {
+  usePageView();
+
   return (
     <Script
       id="gtm"
