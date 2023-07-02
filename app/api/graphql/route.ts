@@ -20,7 +20,7 @@ const resolvers = {
   },
   Post: {
     user: async(parent: any, args: any, { dataSources }: any) => {
-      console.log('parent',parent)
+      // console.log('parent',parent)
       return await dataSources.dummyJsonAPI.getUser(parent.userId);
     }
   }
